@@ -8,7 +8,7 @@
 services:
   # ---------------- BACKEND ----------------
   - type: web
-    name: mi-presion-api
+    name: mi-presion-web-andres
     runtime: python
     plan: free
     region: virginia            # use la misma región de su proyecto en Supabase
@@ -26,7 +26,7 @@ services:
       - key: SECRET_KEY         # Render inventa un valor seguro automáticamente
         generateValue: true
       - key: ENCRYPTION_KEY     # Render la inventa una vez. ¡No la cambie después!
-        generateValue: true
+        sync: false
       - key: GEMINI_MODELO
         value: gemini-3.5-flash-lite
       - key: ASISTENTE_LIMITE_POR_HORA
