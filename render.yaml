@@ -1,0 +1,47 @@
+# =============================================================
+#  BLUEPRINT DE RENDER
+#  Render lee este archivo y crea DOS servicios gratuitos:
+#    1. mi-presion-api  -> el backend (Python / FastAPI)
+#    2. mi-presion-web  -> el frontend (página estática)
+#  Guía paso a paso: docs/08-despliegue-render.md
+# =============================================================
+services:
+  # ---------------- BACKEND ----------------
+  - type: web
+    name: mi-presion-api
+    runtime: python
+    plan: free
+    region: virginia            # use la misma región de su proyecto en Supabase
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATABASE_URL       # URL del "Session pooler" de Supabase (se la pide al crear)
+        sync: false
+      - key: GEMINI_API_KEY     # llave de Google AI Studio (se la pide al crear)
+        sync: false
+      - key: SECRET_KEY         # Render inventa un valor seguro automáticamente
+        generateValue: true
+      - key: ENCRYPTION_KEY     # Render la inventa una vez. ¡No la cambie después!
+        generateValue: true
+      - key: GEMINI_MODELO
+        value: gemini-3.5-flash-lite
+      - key: ASISTENTE_LIMITE_POR_HORA
+        value: "20"
+      - key: CORS_ORIGINS
+        value: "*"
+
+  # ---------------- FRONTEND ----------------
+  - type: web
+    name: mi-presion-web
+    runtime: static
+    rootDir: frontend
+    # Escribe la dirección del backend dentro de js/config.js
+    buildCommand: echo "export const API_URL = \"$API_URL\";" > js/config.js
+    staticPublishPath: ./
+    envVars:
+      - key: API_URL            # ej.: https://mi-presion-api.onrender.com (se la pide al crear)
+        sync: false

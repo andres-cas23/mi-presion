@@ -1,0 +1,80 @@
+/* =========================================================
+   BASE: colores, letra, botones y formularios.
+   Si quiere cambiar un color de toda la app, cámbielo aquí.
+   ========================================================= */
+:root {
+  --fondo: #EEF3F2;
+  --superficie: #FFFFFF;
+  --tinta: #16324F;        /* texto principal */
+  --tinta-suave: #4A5F73;  /* texto secundario */
+  --azul: #1D5C96;
+  --azul-claro: #E3EDF7;
+  --verde: #2A7A57;
+  --ambar: #8A5A00;
+  --naranja: #B0441C;
+  --rojo: #A3161A;
+  --linea: #CBD8D6;
+  --radio: 14px;
+  font-size: 19px;         /* letra grande por defecto (adultos mayores) */
+}
+:root[data-texto="grande"] { font-size: 22px; }
+:root[data-texto="muy-grande"] { font-size: 25px; }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .5em; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.05rem; }
+p { margin: 0 0 .8em; max-width: 42em; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
+[hidden] { display: none !important; }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  min-height: 52px; padding: .55em 1.2em; border-radius: 12px;
+  border: 2px solid var(--azul); background: var(--azul); color: #fff;
+  font-weight: 700; cursor: pointer; text-decoration: none;
+}
+.btn:hover { background: #164A7A; border-color: #164A7A; }
+.btn.secundario { background: var(--superficie); color: var(--azul); }
+.btn.secundario:hover { background: var(--azul-claro); }
+.btn.peligro { background: var(--superficie); color: var(--rojo); border-color: var(--rojo); }
+.btn[disabled] { opacity: .55; cursor: wait; }
+.fila-botones { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+.boton-texto {
+  background: none; border: 0; color: var(--azul); font-weight: 700; text-decoration: underline;
+  cursor: pointer; min-height: 44px; padding: 0 .3rem;
+}
+.boton-texto.rojo { color: var(--rojo); }
+
+/* ---------- Formularios ---------- */
+label { display: block; font-weight: 700; margin: .9rem 0 .3rem; }
+.ayuda { font-weight: 400; color: var(--tinta-suave); font-size: .9rem; display: block; }
+input, select, textarea {
+  width: 100%; min-height: 52px; padding: .55em .8em;
+  border: 2px solid #8FA3A0; border-radius: 10px; background: #fff;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--azul); }
+.check { display: flex; gap: .8rem; align-items: flex-start; font-weight: 400; }
+.check input { width: 28px; min-height: 28px; height: 28px; flex: none; margin-top: .1rem; }
+.dos-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+details { border-top: 1px solid var(--linea); padding-top: .8rem; margin-top: 1rem; }
+summary { cursor: pointer; font-weight: 700; color: var(--azul); min-height: 44px; display: flex; align-items: center; }
+
+/* ---------- Utilidades ---------- */
+.nota { color: var(--tinta-suave); font-size: .92rem; }
+.vacio { color: var(--tinta-suave); padding: .5rem 0; }
+
+@media (max-width: 760px) {
+  :root { font-size: 18px; }
+  .dos-col { grid-template-columns: 1fr; }
+}

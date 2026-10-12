@@ -1,0 +1,21 @@
+# Entornos virtuales de Python
+.venv/
+venv/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# SECRETOS: nunca subir a GitHub
+.env
+
+# Bases de datos locales y archivos generados
+*.db
+informe_demo.pdf
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

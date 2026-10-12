@@ -1,0 +1,2 @@
+# Opcional: solo para scripts/puente_ble.py (leer un tensiómetro real desde el PC)
+bleak>=0.22

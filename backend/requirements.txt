@@ -1,0 +1,33 @@
+# Librerías que necesita el backend. Se instalan con:  pip install -r requirements.txt
+
+# Servidor web y API
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+
+# Validación y configuración
+pydantic>=2.7
+pydantic-settings>=2.3
+email-validator>=2.1
+
+# Base de datos (SQLAlchemy + controlador de PostgreSQL para Supabase)
+sqlalchemy>=2.0
+psycopg[binary]>=3.2
+
+# Seguridad
+PyJWT>=2.8
+bcrypt>=4.1
+cryptography>=42.0
+
+# Informes PDF
+reportlab>=4.0
+
+# Asistente con Google Gemini
+google-genai>=1.0
+
+# Zonas horarias en Windows
+tzdata>=2024.1
+
+# Pruebas y scripts
+httpx>=0.27
+pytest>=8.0
